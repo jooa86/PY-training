@@ -8,7 +8,7 @@ query = raw_input("What do you want to search for ? >>")
 query = urllib.urlencode({ 'q' : query })
 response = urllib2.urlopen(url + query).read()
 data = json.loads(response)
-result = data['responseData']['results']
+results = data['responseData']['results']
 
 for result in results:
     title = result['title']
