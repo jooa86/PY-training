@@ -1,16 +1,10 @@
-import urllib2
 import urllib
-import json
+import re
 
-url = "http://ajax.googleapis.com/ajax/services/search/web?v=1.0&"
+print "we will try to get public IP address:"
 
-query = raw_input("What do you want to search for ? >>")
-query = urllib.urlencode({ 'q' : query })
-response = urllib2.urlopen(url + query).read()
-data = json.loads(response)
-results = data['responseData']['results']
+url = "http://checkip.dyndns.org"
+request = urllib.urlopen(url).read()
+theIP = re.findall(r'[0-9]+(?:\.[0-9]+){3}', request)
 
-for result in results:
-    title = result['title']
-    url = result['url']
-    print(title + ' :: ' + url)
+print "And yes public IP is:", theIP
